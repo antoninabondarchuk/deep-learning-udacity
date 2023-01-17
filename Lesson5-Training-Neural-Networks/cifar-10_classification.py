@@ -15,8 +15,8 @@ transform = transforms.Compose([
 ])
 
 # Load train and test datasets
-training_data = datasets.FashionMNIST(root="data", train=True, download=True, transform=transform)
-test_data = datasets.FashionMNIST(root="data", train=False, download=True, transform=transform)
+training_data = datasets.CIFAR10(root="data", train=True, download=True, transform=transform)
+test_data = datasets.CIFAR10(root="data", train=False, download=True, transform=transform)
 
 # Create the training and test dataloader
 train_loader = DataLoader(training_data, batch_size=16, shuffle=True)
@@ -27,7 +27,7 @@ class Net(nn.Module):
     def __init__(self):
         super().__init__()
         self.activation = F.relu
-        self.layer1 = nn.Linear(28 * 28, 120)
+        self.layer1 = nn.Linear(32 * 32 * 3, 120)
         self.layer2 = nn.Linear(120, 84)
         self.layer3 = nn.Linear(84, 10)
 
